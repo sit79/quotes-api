@@ -20,10 +20,13 @@ db.once("open", function() {
 })
 
 let n = Number(process.argv[2]) || 20
+<<<<<<< HEAD
+=======
   console.log("DB started…")
 })
 
 let n = 20
+>>>>>>> f96b04dd3a896e639d80d52a1271234ae834f83c
 let quotes = []
 while (n) {
   quotes.push({
