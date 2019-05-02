@@ -30,5 +30,5 @@ const QuoteSchema = new Schema({
   }
 })
 
-const Quote = mongoose.model("Bookmark", QuoteSchema)
+const Quote = mongoose.model("Quote", QuoteSchema)
 module.exports = Quote
