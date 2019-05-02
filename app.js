@@ -1,7 +1,19 @@
 const express = require("express")
 const logger = require("morgan")
+const mongoose = require("mongoose")
 
 const PORT = process.env.PORT || 4000
+
+mongoose
+  .connect("mongodb://localhost/quotes", {
+    useNewUrlParser: true
+  })
+  .then(() => {
+    console.log("Connected to Mongo")
+  })
+  .catch(err => {
+    console.error("Could not connect, ", err)
+  })
 
 const indexRouter = require("./routes/index")
 const apiRouter = require("./routes/api")
