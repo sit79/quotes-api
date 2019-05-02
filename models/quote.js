@@ -14,7 +14,7 @@ const QuoteSchema = new Schema({
   year: {
     type: Date
   },
-  tag: [
+  category: [
     {
       type: String,
       maxlength: 50
@@ -23,6 +23,10 @@ const QuoteSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now()
+  },
+  votes: {
+    upVote: Number,
+    downVote: Number
   }
 })
 
