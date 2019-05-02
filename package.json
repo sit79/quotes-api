@@ -3,15 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "seed:quotes": "node ./data-import/seedquotes.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "eslint": "^5.16.0",
     "express": "~4.16.0",
+    "faker": "^4.1.0",
     "mongoose": "^5.5.5",
     "morgan": "~1.9.0",
     "nodemon": "^1.19.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0"
   }
 }

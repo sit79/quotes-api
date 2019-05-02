@@ -1,20 +1,28 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require("express")
+const logger = require("morgan")
+const mongoose = require("mongoose")
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const PORT = process.env.PORT || 4000
 
-var app = express();
+mongoose
+  .connect("mongodb://localhost/quotes", {
+    useNewUrlParser: true
+  })
+  .then(() => {
+    console.log("Connected to Mongo")
+  })
+  .catch(err => {
+    console.error("Could not connect, ", err)
+  })
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+const indexRouter = require("./routes/index")
+const apiRouter = require("./routes/api")
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+const app = express()
 
-module.exports = app;
+app.use(logger("dev"))
+app.use(express.json())
+
+app.use("/", indexRouter)
+app.use("/api", apiRouter)
+app.listen(PORT, console.log("Server is listening on port: " + PORT))
