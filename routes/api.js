@@ -21,6 +21,11 @@ const apiRoutes = {
   deleteQuote: "/:id"
 }
 
+// Show all endpoints at home route ("/"")
+router.get("/", (req, res) => {
+  res.json({ availableRoutes: apiRoutes })
+})
+
 // GET
 router.get(apiRoutes.getQuote, getQuote)
 router.get(apiRoutes.getAllQuotes, getAllQuotes)
