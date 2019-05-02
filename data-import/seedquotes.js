@@ -1,4 +1,4 @@
-const Quote = require("./models/quote")
+const Quote = require("../models/quote")
 const faker = require("faker")
 const mongoose = require("mongoose")
 
@@ -16,7 +16,10 @@ mongoose
 const db = mongoose.connection
 db.on("error", console.error.bind(console, "connection error"))
 db.once("open", function() {
-  // We're connected
+  console.log("DB started…")
+})
+
+let n = Number(process.argv[2]) || 20
   console.log("DB started…")
 })
 
