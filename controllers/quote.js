@@ -17,15 +17,26 @@ module.exports = {
         })
       })
       .catch(err => {
+        // needs better handling
         err.statusCode = 404
         next(err)
       })
       .finally(() => next())
   },
   updateQuote: (req, res, next) => {
-    console.log("update quote")
-    next()
+    const { id } = req.params
+    const update = req.body
+    Quote.findOneAndUpdate({ _id: id }, update, { new: true })
+      .then(quote => {
+        res.locals.response = Object.assign({}, res.locals.response || {}, {
+          quote,
+          message: `Successfully updated quote with id: ${id}`
+        })
+      })
+      .catch(err => next(err)) // needs better handling
+      .finally(() => next())
   },
+
   deleteQuote: (req, res, next) => {
     console.log("delete quote")
     next()
