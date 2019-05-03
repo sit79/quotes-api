@@ -14,11 +14,11 @@ const {
 // routes:
 
 const apiRoutes = {
-  getQuote: "/:id",
-  addQuote: "/",
-  getAllQuotes: "/",
-  updateQuote: "/:id",
-  deleteQuote: "/:id"
+  getQuote: "/quotes/:id",
+  addQuote: "/quotes",
+  getAllQuotes: "/quotes",
+  updateQuote: "/quotes/:id",
+  deleteQuote: "/quotes/:id"
 }
 
 // Show all endpoints at home route ("/"")

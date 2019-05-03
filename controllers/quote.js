@@ -1,3 +1,5 @@
+const Quote = require("../models/quote")
+
 module.exports = {
   getQuote: (req, res, next) => {
     console.log("get quote")
@@ -8,8 +10,17 @@ module.exports = {
     next()
   },
   getAllQuotes: (req, res, next) => {
-    console.log("get all quotes")
-    next()
+    Quote.find({})
+      .then(quotes => {
+        res.locals.response = Object.assign({}, res.locals.response || {}, {
+          quotes
+        })
+      })
+      .catch(err => {
+        err.statusCode = 404
+        next(err)
+      })
+      .finally(() => next())
   },
   updateQuote: (req, res, next) => {
     console.log("update quote")
