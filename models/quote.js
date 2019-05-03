@@ -9,7 +9,7 @@ const QuoteSchema = new Schema({
   },
   author: {
     type: String,
-    required: true
+    default: "Anonymous"
   },
   year: {
     type: Date
