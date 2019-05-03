@@ -11,7 +11,10 @@ module.exports = {
   },
   getAllQuotes: (req, res, next) => {
     Quote.find({})
-      .then(quotes => {
+      .then(docs => {
+        let quotes = docs.map((doc, i) => {
+          return `${doc.quote} - ${doc.author}`
+        })
         res.locals.response = Object.assign({}, res.locals.response || {}, {
           quotes
         })
