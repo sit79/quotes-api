@@ -17,7 +17,6 @@ module.exports = {
         })
       })
       .catch(err => {
-        // needs better handling
         err.statusCode = 404
         next(err)
       })
@@ -39,6 +38,21 @@ module.exports = {
 
   deleteQuote: (req, res, next) => {
     console.log("delete quote")
+    next()
+  },
+
+  getRandomQuote: async (req, res, next) => {
+    try {
+      const random = await Quote.aggregate([
+        { $sample: { size: 1 } },
+        { $project: { quote: 1, _id: 0, author: 1 } }
+      ])
+      res.locals.response = Object.assign({}, res.locals.response || {}, {
+        random
+      })
+    } catch (e) {
+      next(err)
+    }
     next()
   }
 }

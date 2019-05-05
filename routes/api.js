@@ -9,7 +9,8 @@ const {
   addQuote,
   getAllQuotes,
   updateQuote,
-  deleteQuote
+  deleteQuote,
+  getRandomQuote
 } = require("../controllers/quote")
 // routes:
 
@@ -18,7 +19,8 @@ const apiRoutes = {
   addQuote: "/quotes",
   getAllQuotes: "/quotes",
   updateQuote: "/quotes/:id",
-  deleteQuote: "/quotes/:id"
+  deleteQuote: "/quotes/:id",
+  randomQuote: "/quotes/random"
 }
 
 // Show all endpoints at home route ("/"")
@@ -29,6 +31,7 @@ router.get("/", (req, res) => {
 // GET
 router.get(apiRoutes.getQuote, getQuote)
 router.get(apiRoutes.getAllQuotes, getAllQuotes)
+router.get(apiRoutes.randomQuote, getRandomQuote)
 
 // POST
 router.post(apiRoutes.addQuote, addQuote)
